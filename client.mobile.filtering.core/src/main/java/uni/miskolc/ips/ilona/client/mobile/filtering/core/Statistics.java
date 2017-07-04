@@ -29,6 +29,9 @@ public class Statistics {
 
     public double getStdDev() {
         return Math.sqrt(getVariance());
+        
+        
+        
     }
 }
 
