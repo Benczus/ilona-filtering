@@ -1,4 +1,4 @@
-package uni.miskolc.ips.ilona.client.mobile.filtering.core;
+package uni.miskolc.ips.ilona.client.mobile.filtering.core.model;
 
 import java.util.ArrayList;
 

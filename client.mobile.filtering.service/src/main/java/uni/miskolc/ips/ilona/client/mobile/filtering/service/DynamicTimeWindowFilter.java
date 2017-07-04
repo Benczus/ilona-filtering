@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.client.mobile.filtering.core.service.WiFiRSSIFilter;
 
-import uni.miskolc.ips.ilona.client.mobile.filtering.core.Statistics;
+import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.Statistics;
 
 /**
  * @author bence
