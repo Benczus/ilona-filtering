@@ -11,6 +11,7 @@ import java.util.Map;
 import org.client.mobile.filtering.core.service.WiFiRSSIFilter;
 
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.Statistics;
+import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
 
 /**
  * @author bence
@@ -29,15 +30,15 @@ public class DynamicTimeWindowFilter extends WiFiRSSIFilter {
 	    //Main filtering method
 
 	    @Override
-	    public Map<String, Double> filter(LinkedList<Map<String, Double>> linkedList) {
-	        if (linkedList.size() < memsize) {
-	            return linkedList.getFirst();
+	    public WiFiRSSIObservation filter(LinkedList<WiFiRSSIObservation> observation) {
+	        if (observation.size() < memsize) {
+	            return observation.getFirst();
 	        }
 	        double filteredValue;
-	        Map<String, Double> result = new HashMap<String, Double>();
-	        ArrayList<Double> rssiValues = null;
-	        for (String ssid : getKeys(linkedList)) {
-	            rssiValues = getWiFiRSSIVector(ssid, linkedList);
+	        WiFiRSSIObservation result= new WiFiRSSIObservation();
+	        ArrayList<Double> rssiValues=new ArrayList<Double>();
+	        for (String ssid : getKeys(observation)) {
+	            rssiValues = getWiFiRSSIVector(ssid, observation);
 	            if (rssiValues.size() > 0) {
 	                filteredValue = rssiValues.get(0);
 	                if (rssiValues.size() > 1) {

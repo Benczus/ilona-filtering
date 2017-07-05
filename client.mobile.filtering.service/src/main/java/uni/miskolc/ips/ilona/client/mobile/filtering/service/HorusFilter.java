@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.client.mobile.filtering.core.service.WiFiRSSIFilter;
 
+import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
+
 public class HorusFilter extends WiFiRSSIFilter {
 	private final int memsize;
 	
@@ -15,13 +17,13 @@ public class HorusFilter extends WiFiRSSIFilter {
     }
 
 	@Override
-	public Map<String, Double> filter(LinkedList<Map<String, Double>> linkedList) {
-		 if (linkedList.size() < memsize) {
-	            return linkedList.getFirst();
+	public WiFiRSSIObservation filter(LinkedList<WiFiRSSIObservation> observation) {
+		 if (observation.size() < memsize) {
+	            return observation.getFirst();
 	        }
-	        Map<String, Double> result = new HashMap<String, Double>();
-	        for (String ssid : getKeys(linkedList)) {
-	            ArrayList<Double> rssiValues = getWiFiRSSIVector(ssid, linkedList);
+		 WiFiRSSIObservation result= new WiFiRSSIObservation();
+	        for (String ssid : getKeys(observation)) {
+	            ArrayList<Double> rssiValues = getWiFiRSSIVector(ssid, observation);
 	            double filteredValue = filterSum(rssiValues);
 	            result.put(ssid, filteredValue);
 	        }

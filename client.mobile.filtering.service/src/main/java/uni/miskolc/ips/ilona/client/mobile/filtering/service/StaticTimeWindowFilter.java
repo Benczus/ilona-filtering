@@ -28,7 +28,7 @@ public class StaticTimeWindowFilter extends WiFiRSSIFilter {
     }
 
     //Main filtering method
-
+/*
     @Override
     public Map<String, Double> filter(LinkedList<Map<String, Double>> linkedList) {
         if (linkedList.size() < memsize) {
@@ -52,16 +52,17 @@ public class StaticTimeWindowFilter extends WiFiRSSIFilter {
 
         }
         return result;
-    }
-    public WiFiRSSIObservation filterObs(LinkedList<WiFiRSSIObservation> observations) {
+    }*/
+    @Override
+    public WiFiRSSIObservation filter(LinkedList<WiFiRSSIObservation> observations) {
         if (observations.size() < memsize) {
             return observations.getFirst();
         }
         double filteredValue;
         WiFiRSSIObservation result= new WiFiRSSIObservation();
-        ArrayList<Double> rssiValues;
-        for (String ssid : getObsKeys(observations) ) {
-            rssiValues = getObsWiFiRSSIVector(ssid, observations);
+        ArrayList<Double> rssiValues=new ArrayList<Double>();
+        for (String ssid : getKeys(observations) ) {
+            rssiValues = getWiFiRSSIVector(ssid, observations);
             if (rssiValues.size() > 0) {
                 filteredValue = rssiValues.get(0);
                 if (rssiValues.size() > 1) {
@@ -75,5 +76,5 @@ public class StaticTimeWindowFilter extends WiFiRSSIFilter {
         }
         return result;
     }
-
+   
 }
