@@ -10,6 +10,8 @@ import java.util.Map;
 
 import org.client.mobile.filtering.core.service.WiFiRSSIFilter;
 
+import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
+
 /**
  * @author bence
  *
@@ -48,6 +50,28 @@ public class StaticTimeWindowFilter extends WiFiRSSIFilter {
                 result.put(ssid, filteredValue);
             }
 
+        }
+        return result;
+    }
+    public WiFiRSSIObservation filterObs(LinkedList<WiFiRSSIObservation> observations) {
+        if (observations.size() < memsize) {
+            return observations.getFirst();
+        }
+        double filteredValue;
+        WiFiRSSIObservation result= new WiFiRSSIObservation();
+        ArrayList<Double> rssiValues;
+        for (String ssid : getObsKeys(observations) ) {
+            rssiValues = getObsWiFiRSSIVector(ssid, observations);
+            if (rssiValues.size() > 0) {
+                filteredValue = rssiValues.get(0);
+                if (rssiValues.size() > 1) {
+                    double difference = rssiValues.get(0) - rssiValues.get(1);
+                    if ((difference > threshold)) {
+                        filteredValue = filterSum(rssiValues);
+                    }
+                }
+                result.put(ssid, filteredValue);
+            }
         }
         return result;
     }
