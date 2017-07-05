@@ -4,16 +4,14 @@
 package uni.miskolc.ips.ilona.client.mobile.filtering.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 
 import org.client.mobile.filtering.core.service.WiFiRSSIFilter;
 
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
 
 /**
- * @author bence
+ * @author Bence Bogdandy, bence.bogdandy@gmail.com
  *
  */
 public class StaticTimeWindowFilter extends WiFiRSSIFilter {
@@ -53,6 +51,10 @@ public class StaticTimeWindowFilter extends WiFiRSSIFilter {
         }
         return result;
     }*/
+    /**
+     * Static Time Window Filtering algorithm
+     * Filters the RSSI values of the observation.
+     */
     @Override
     public WiFiRSSIObservation filter(LinkedList<WiFiRSSIObservation> observations) {
         if (observations.size() < memsize) {

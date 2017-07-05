@@ -4,7 +4,11 @@ import java.util.Collection;
 import java.util.Map;
 
 import android.net.wifi.ScanResult;
-
+/**
+ * 
+ * @author Bence Bogdandy, bence.bogdandy@gmail.com
+ *
+ */
 public class WiFiRSSIObservation {
 
 	private long timestamp;
@@ -13,13 +17,21 @@ public class WiFiRSSIObservation {
 	public WiFiRSSIObservation() {
 		super();
 	}
-
+/**
+ * 
+ * @param timestamp The timestamp of the scan.
+ * @param observation Map of String-Doubles of the SSID-RSSI values
+ */
 	public WiFiRSSIObservation(long timestamp, Map<String, Double> observation) {
 		super();
 		this.timestamp = timestamp;
 		this.observation = observation;
 	}
-
+/**
+ * 
+ * @param timestamp The timestamp of the scan.
+ * @param scanresults The scan results(SSID,RSSI values) of the scan.
+ */
 	public WiFiRSSIObservation(long timestamp, Collection<ScanResult> scanresults) {
 		super();
 		this.timestamp = timestamp;
@@ -39,8 +51,7 @@ public class WiFiRSSIObservation {
 	}
 
 	public int getSize() {
-		int size = observation.size();
-		return size;
+		return observation.size();
 	}
 
 	public void put(String ssid, double filteredValue) {
