@@ -39,6 +39,12 @@ public class WiFiRSSIObservation {
 		return size;
 	}
 
+
+	public void put(String ssid, double filteredValue) {
+		observation.put(key, value)
+		
+	}
+
 	
 	
 }
