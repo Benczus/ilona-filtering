@@ -9,28 +9,8 @@ import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservat
 
 public abstract class WiFiRSSIFilter {
 	private int memsize;
-	
-	//public abstract Map<String, Double> filter(LinkedList<Map<String, Double>> linkedList);
 	public abstract WiFiRSSIObservation filter(List<WiFiRSSIObservation> observations);
-	/*
-	protected Set<String> getKeys(LinkedList<Map<String, Double>> linkedList) {
-        Set<String> result = new HashSet<String>();
-        for (int i = 0; i < linkedList.size(); i++) {
-            result.addAll(linkedList.get(i).keySet());
-        }
-        return result;
-    }
-
-    protected ArrayList<Double> getWiFiRSSIVector(String ssid, LinkedList<Map<String, Double>> linkedList) {
-        ArrayList<Double> result = new ArrayList<Double>();
-        for (int i = 0; i < memsize; i++) {
-            if (linkedList.get(i).get(ssid) != null) {
-                result.add(linkedList.get(i).get(ssid));
-            }
-        }
-        return result;
-    }
-*/
+	
 	protected Set<String> getKeys(List<WiFiRSSIObservation> observation) {
         Set<String> result = new HashSet<String>();
         for (int i = 0; i < observation.size(); i++) {
