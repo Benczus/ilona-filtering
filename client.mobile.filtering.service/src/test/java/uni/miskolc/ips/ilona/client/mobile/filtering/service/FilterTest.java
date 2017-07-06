@@ -19,10 +19,10 @@ public class FilterTest {
 	long timestamp;
 	WiFiRSSIObservation returnedObservation= new WiFiRSSIObservation();
 	// TODO observations list!!
+	List<WiFiRSSIObservation> observations;
 	
 	@Before
 	public void setUp() throws Exception {
-	
 		filter= EasyMock.createMock(DynamicTimeWindowFilter.class);
 		EasyMock.expect(filter.filter(observations)).andReturn(returnedObservation).anyTimes();
 		EasyMock.replay(filter);
@@ -37,6 +37,7 @@ public class FilterTest {
 	}
 	@Test
 	public void testWithMultipleObservations() {
+		
 		WiFiRSSIObservation observation1= new WiFiRSSIObservation(timestamp, map);
 		WiFiRSSIObservation observation2= new WiFiRSSIObservation(timestamp, map);
 		WiFiRSSIObservation observation3= new WiFiRSSIObservation(timestamp, map);
