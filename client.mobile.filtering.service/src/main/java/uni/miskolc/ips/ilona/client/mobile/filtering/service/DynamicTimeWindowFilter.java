@@ -6,10 +6,9 @@ package uni.miskolc.ips.ilona.client.mobile.filtering.service;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import org.client.mobile.filtering.core.service.WiFiRSSIFilter;
-
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.Statistics;
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
+import uni.miskolc.ips.ilona.client.mobile.filtering.core.service.WiFiRSSIFilter;
 
 /**
  * @author Bence Bogdandy, bence.bogdandy@gmail.com
