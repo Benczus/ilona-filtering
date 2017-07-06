@@ -5,9 +5,7 @@ import java.util.Map;
 
 import android.net.wifi.ScanResult;
 /**
- * 
  * @author Bence Bogdandy, bence.bogdandy@gmail.com
- *
  */
 public class WiFiRSSIObservation {
 
@@ -18,7 +16,6 @@ public class WiFiRSSIObservation {
 		super();
 	}
 /**
- * 
  * @param timestamp The timestamp of the scan.
  * @param observation Map of String-Doubles of the SSID-RSSI values
  */
@@ -28,7 +25,6 @@ public class WiFiRSSIObservation {
 		this.observation = observation;
 	}
 /**
- * 
  * @param timestamp The timestamp of the scan.
  * @param scanresults The scan results(SSID,RSSI values) of the scan.
  */
