@@ -4,7 +4,7 @@
 package uni.miskolc.ips.ilona.client.mobile.filtering.service;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.Statistics;
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
@@ -28,9 +28,9 @@ public class DynamicTimeWindowFilter extends WiFiRSSIFilter {
 	     * Filters the RSSI values of the observation.
 	     */
 	    @Override
-	    public WiFiRSSIObservation filter(LinkedList<WiFiRSSIObservation> observation) {
+	    public WiFiRSSIObservation filter(List<WiFiRSSIObservation> observation) {
 	        if (observation.size() < memsize) {
-	            return observation.getFirst();
+	            return observation.get(0);
 	        }
 	        double filteredValue;
 	        WiFiRSSIObservation result= new WiFiRSSIObservation();

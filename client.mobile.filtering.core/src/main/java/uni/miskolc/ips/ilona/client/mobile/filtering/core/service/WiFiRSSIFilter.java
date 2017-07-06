@@ -2,8 +2,7 @@ package uni.miskolc.ips.ilona.client.mobile.filtering.core.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
@@ -12,7 +11,7 @@ public abstract class WiFiRSSIFilter {
 	private int memsize;
 	
 	//public abstract Map<String, Double> filter(LinkedList<Map<String, Double>> linkedList);
-	public abstract WiFiRSSIObservation filter(LinkedList<WiFiRSSIObservation> observations);
+	public abstract WiFiRSSIObservation filter(List<WiFiRSSIObservation> observations);
 	/*
 	protected Set<String> getKeys(LinkedList<Map<String, Double>> linkedList) {
         Set<String> result = new HashSet<String>();
@@ -32,15 +31,15 @@ public abstract class WiFiRSSIFilter {
         return result;
     }
 */
-	protected Set<String> getKeys(LinkedList<WiFiRSSIObservation> observations) {
+	protected Set<String> getKeys(List<WiFiRSSIObservation> observation) {
         Set<String> result = new HashSet<String>();
-        for (int i = 0; i < observations.size(); i++) {
-            result.addAll(observations.get(i).getObservation().keySet());
+        for (int i = 0; i < observation.size(); i++) {
+            result.addAll(observation.get(i).getObservation().keySet());
         }
         return result;
     }
 
-    protected ArrayList<Double> getWiFiRSSIVector(String ssid, LinkedList<WiFiRSSIObservation> observations) {
+    protected ArrayList<Double> getWiFiRSSIVector(String ssid, List<WiFiRSSIObservation> observations) {
         ArrayList<Double> result = new ArrayList<Double>();
         for (int i = 0; i < memsize; i++) {
             if (observations.get(i).getObservation().get(ssid) != null) {
