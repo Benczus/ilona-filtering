@@ -1,6 +1,7 @@
 package uni.miskolc.ips.ilona.client.mobile.filtering.core.model;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import android.net.wifi.ScanResult;
@@ -27,13 +28,17 @@ public class WiFiRSSIObservation {
 /**
  * @param timestamp The timestamp of the scan.
  * @param scanresults The scan results(SSID,RSSI values) of the scan.
+ * TODO NEEDS TEST
  */
 	public WiFiRSSIObservation(long timestamp, Collection<ScanResult> scanresults) {
 		super();
 		this.timestamp = timestamp;
 
 		for (ScanResult scanresult : scanresults) {
-			observation.put(scanresult.SSID, (double) scanresult.level);
+			Map<String, Double> scanObservation=new HashMap<String, Double>();
+			scanObservation.put(scanresult.SSID, (double) scanresult.level);
+			this.observation=scanObservation;
+
 		}
 
 	}
