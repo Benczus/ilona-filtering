@@ -1,25 +1,18 @@
 package uni.miskolc.ips.ilona.client.mobile.filtering.core;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.HandshakeCompletedEvent;
-
 import org.easymock.EasyMock;
-
-import org.hamcrest.*;
-import org.hamcrest.core.Every;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import android.net.wifi.ScanResult;
-import android.view.animation.ScaleAnimation;
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
 
 public class ObservationTest {
