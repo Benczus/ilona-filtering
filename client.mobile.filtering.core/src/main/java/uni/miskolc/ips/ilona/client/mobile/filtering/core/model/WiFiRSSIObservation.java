@@ -33,13 +33,12 @@ public class WiFiRSSIObservation {
 	public WiFiRSSIObservation(long timestamp, Collection<ScanResult> scanresults) {
 		super();
 		this.timestamp = timestamp;
-
+		Map<String, Double> scanObservation=new HashMap<String, Double>();
 		for (ScanResult scanresult : scanresults) {
-			Map<String, Double> scanObservation=new HashMap<String, Double>();
+			
 			scanObservation.put(scanresult.SSID, (double) scanresult.level);
-			this.observation=scanObservation;
-
 		}
+		this.observation=scanObservation;
 
 	}
 
