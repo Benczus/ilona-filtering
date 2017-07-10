@@ -1,19 +1,15 @@
 package uni.miskolc.ips.ilona.client.mobile.filtering.core;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import android.net.wifi.ScanResult;
 import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import android.net.wifi.ScanResult;
 import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
+
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class ObservationTest {
 	
@@ -87,5 +83,16 @@ public class ObservationTest {
 		System.out.println("1\t"+observation);
 		
 	}
-	
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testNullObservation() {
+		new WiFiRSSIObservation(0, (Collection<ScanResult>) null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void negativeTimestamp() {
+		new WiFiRSSIObservation(-1, new HashMap<String, Double>());
+	}
+
+
 }

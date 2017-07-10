@@ -1,10 +1,10 @@
 package uni.miskolc.ips.ilona.client.mobile.filtering.core.model;
 
+import android.net.wifi.ScanResult;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import android.net.wifi.ScanResult;
 /**
  * @author Bence Bogdandy, bence.bogdandy@gmail.com
  */
@@ -20,8 +20,11 @@ public class WiFiRSSIObservation {
  * @param timestamp The timestamp of the scan.
  * @param observation Map of String-Doubles of the SSID-RSSI values
  */
-	public WiFiRSSIObservation(long timestamp, Map<String, Double> observation) {
+public WiFiRSSIObservation(long timestamp, Map<String, Double> observation) throws IllegalArgumentException {
 		super();
+	if (observation == null || timestamp < 0) {
+		throw new IllegalArgumentException();
+	}
 		this.timestamp = timestamp;
 		this.observation = observation;
 	}
@@ -30,8 +33,11 @@ public class WiFiRSSIObservation {
  * @param scanresults The scan results(SSID,RSSI values) of the scan.
  * TODO NEEDS TEST
  */
-	public WiFiRSSIObservation(long timestamp, Collection<ScanResult> scanresults) {
+public WiFiRSSIObservation(long timestamp, Collection<ScanResult> scanresults) throws IllegalArgumentException {
 		super();
+	if (scanresults == null || timestamp < 0) {
+		throw new IllegalArgumentException();
+	}
 		this.timestamp = timestamp;
 		Map<String, Double> scanObservation=new HashMap<String, Double>();
 		for (ScanResult scanresult : scanresults) {
