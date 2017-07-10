@@ -1,11 +1,11 @@
 package uni.miskolc.ips.ilona.client.mobile.filtering.core.service;
 
+import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservation;
 /**
  * 
  * Abstract filtering Strategy class.
@@ -15,9 +15,9 @@ import uni.miskolc.ips.ilona.client.mobile.filtering.core.model.WiFiRSSIObservat
  *
  */
 public abstract class WiFiRSSIFilter {
-	private int memsize;
-	public abstract WiFiRSSIObservation filter(List<WiFiRSSIObservation> observations);
-	/**
+    public abstract WiFiRSSIObservation filter(List<WiFiRSSIObservation> observations, long timestamp);
+
+    /**
 	 * Extracts a set of SSID keys from an observation object
 	 * @param observation The list of observations containing the SSID keys. 
 	 * @return a string set of SSID keys.
@@ -37,9 +37,11 @@ public abstract class WiFiRSSIFilter {
 	 * @return an ArrayList of RSSI values of the SSID WiFi beacon.
 	 */
 
-    protected ArrayList<Double> getWiFiRSSIVector(String ssid, List<WiFiRSSIObservation> observations) {
+    protected ArrayList<Double> getWiFiRSSIVector(String ssid, List<WiFiRSSIObservation> observations, int memsize) {
         ArrayList<Double> result = new ArrayList<Double>();
+
         for (int i = 0; i < memsize; i++) {
+
             if (observations.get(i).getObservation().get(ssid) != null) {
                 result.add(observations.get(i).getObservation().get(ssid));
             }
@@ -51,10 +53,12 @@ public abstract class WiFiRSSIFilter {
      * @return
      */
     protected double filterSum(ArrayList<Double> rssiValues) {
+
         double sum = 0;
         for (int i = 0; i < rssiValues.size(); i++) {
             sum += rssiValues.get(i);
         }
+        System.out.println("filtersum: " + sum / rssiValues.size());
         return sum / rssiValues.size();
     }
 	

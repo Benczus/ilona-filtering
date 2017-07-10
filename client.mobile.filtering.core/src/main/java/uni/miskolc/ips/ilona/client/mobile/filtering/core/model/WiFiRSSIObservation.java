@@ -60,8 +60,11 @@ public WiFiRSSIObservation(long timestamp, Collection<ScanResult> scanresults) t
 		return observation.size();
 	}
 
+
 	public void put(String ssid, double filteredValue) {
-		observation.put(ssid, filteredValue);
+
+
+        observation.put(ssid, filteredValue);
 
 	}
 
