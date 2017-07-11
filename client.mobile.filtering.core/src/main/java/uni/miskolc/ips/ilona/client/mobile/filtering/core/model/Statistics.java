@@ -12,14 +12,14 @@ public class Statistics {
         size = data.size();
     }
 
-    public double getMean() {
+    private double getMean() {
         double sum = 0.0;
         for (double a : data)
             sum += a;
         return sum / size;
     }
 
-    public double getVariance() {
+    private double getVariance() {
         double mean = getMean();
         double temp = 0;
         for (double a : data)
@@ -29,9 +29,8 @@ public class Statistics {
 
     public double getStdDev() {
         return Math.sqrt(getVariance());
-        
-        
-        
+
+
     }
 }
 
