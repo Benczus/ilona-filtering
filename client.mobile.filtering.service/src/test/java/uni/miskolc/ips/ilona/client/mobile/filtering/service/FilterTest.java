@@ -52,17 +52,8 @@ public class FilterTest {
 
     @Test
     public void testWithMultipleObservations() {
-
-
-        Random rand = new Random();
-        for (int i = 0; i < 4; i++) {
-
-            int n = (-1) * (rand.nextInt(50) + 1);
-            System.out.println(n);
-            map = new HashMap<String, Double>();
-            map.put("api1", (double) n);
-            observations.add(new WiFiRSSIObservation(timestamp, map));
-        }
+        int memCount = 4;
+        observations = generateObservations(memCount);
 
         WiFiRSSIObservation result = filter.filter(observations);
         System.out.println(observations);
@@ -79,22 +70,15 @@ public class FilterTest {
 
     @Test
     public void testWithMemSizeObservations() {
-
-        Random rand = new Random();
-        for (int i = 0; i < memsize; i++) {
-
-            int n = (-1) * (rand.nextInt(50) + 1);
-            System.out.println(n);
-            map = new HashMap<String, Double>();
-            map.put("api1", (double) n);
-            observations.add(new WiFiRSSIObservation(timestamp, map));
-        }
+        int memCount = 5;
+        observations = generateObservations(memCount);
 
         WiFiRSSIObservation result = filter.filter(observations);
         System.out.println(observations);
-        System.out.println("\n" + observations);
+        System.out.println("\n" + observations.size());
 
-        for (int i = 0; i < memsize; i++) {
+        for (int i = 0; i < memCount - 1; i++) {
+            System.out.println(i);
             System.out.println(observations.get(i).getObservation());
         }
         System.out.println(result);
@@ -104,21 +88,14 @@ public class FilterTest {
 
     @Test
     public void testWithMoreThanFiveObservations() {
-        Random rand = new Random();
-        for (int i = 0; i < memsize + 5; i++) {
-
-            int n = (-1) * (rand.nextInt(50) + 1);
-            System.out.println(n + " " + i);
-            map = new HashMap<String, Double>();
-            map.put("api1", (double) n);
-            observations.add(new WiFiRSSIObservation(timestamp, map));
-        }
+        int memCount = 10;
+        observations = generateObservations(memCount);
 
         WiFiRSSIObservation result = filter.filter(observations);
         System.out.println(observations);
         System.out.println("\n" + observations);
 
-        for (int i = 0; i < memsize + 5; i++) {
+        for (int i = 0; i < memCount; i++) {
             System.out.println(observations.get(i).getObservation());
         }
         System.out.println(result);
@@ -181,4 +158,16 @@ public class FilterTest {
     }
 
 
+    private List<WiFiRSSIObservation> generateObservations(int count) {
+        Random rand = new Random();
+        for (int i = 0; i < count; i++) {
+
+            int n = (-1) * (rand.nextInt(50) + 1);
+            System.out.println(n);
+            map = new HashMap<String, Double>();
+            map.put("api1", (double) n);
+            observations.add(new WiFiRSSIObservation(timestamp, map));
+        }
+        return observations;
+    }
 }
